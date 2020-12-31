@@ -23,10 +23,10 @@ public class Constants {
             BufferedReader countryReader = new BufferedReader(new FileReader(filePath));
             String country = countryReader.readLine();
             while (country != null) {
-                System.out.println(country);
                 countries.add(country);
                 country = countryReader.readLine();
             }
+            countryReader.close();
         }
         catch (IOException ex) {
             ex.printStackTrace();
