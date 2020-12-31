@@ -1,7 +1,9 @@
 package com.capitalCitiesTrivia;
 
-import com.capitalCitiesTrivia.modes.*;
+//import com.capitalCitiesTrivia.modes.*;
 import com.capitalCitiesTrivia.resources.*;
+
+import java.util.ArrayList;
 
 public class Main {
 
@@ -31,6 +33,9 @@ public class Main {
                 maxQuestions = Integer.parseInt(args[1]);
                 System.out.println("Selected max questions: " + maxQuestions);
             }
+
+            Constants constants = new Constants();
+            ArrayList<String> c = constants.getCountries();
 
         }
 
