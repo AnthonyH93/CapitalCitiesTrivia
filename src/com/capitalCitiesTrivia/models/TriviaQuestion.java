@@ -49,9 +49,7 @@ public class TriviaQuestion {
     }
 
     /* Use the REST Countries API to get the capital of a given country */
-    public String getCapitalWithCountry() throws IOException {
-        String capitalFromCountry = "test";
-
+    public String getCapitalWithCountry() throws IOException, InterruptedException {
         String countryRequest = this.getCountry();
         if (countryRequest.equals("")) {
             return null;
@@ -60,65 +58,33 @@ public class TriviaQuestion {
         /* Create the HTTP request */
         String urlString = "https://restcountries.eu/rest/v2/name/" + countryRequest;
         System.out.println(urlString);
-        URL url = new URL(urlString);
-        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-        connection.setRequestMethod("GET");
-        //connection.setRequestProperty("Content-Type", "application/json");
-        connection.setConnectTimeout(5000);
-        connection.setReadTimeout(5000);
-
-
-        /* Do the request */
-        int status = connection.getResponseCode();
-
-        System.out.println(status);
-
-        Reader reader = null;
-
-        /* Failure */
-        if (status > 299) {
-            reader = new InputStreamReader(connection.getErrorStream());
-        }
-        /* Success */
-        else {
-            reader = new InputStreamReader(connection.getInputStream());
-        }
-
-
-        /* Read the response */
-        BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-        String input = in.readLine();
-        while (input != null) {
-            System.out.println(in);
-            input = in.readLine();
-        }
-        in.close();
-
-
-        connection.disconnect();
-
-        return capitalFromCountry;
-    }
-
-    public String getCapitalWithCountry2() throws IOException, InterruptedException {
-        String countryRequest = this.getCountry();
-        if (countryRequest.equals("")) {
-            return null;
-        }
-
-        /* Create the HTTP request */
-        String urlString = "https://restcountries.eu/rest/v2/name/" + countryRequest;
-        System.out.println(urlString);
+        String newUrlString = urlString.replaceAll(" ", "%20");
+        System.out.println(newUrlString);
 
         var client = HttpClient.newHttpClient();
 
-        var request = HttpRequest.newBuilder(URI.create(urlString)).build();
+        var request = HttpRequest.newBuilder(URI.create(newUrlString)).build();
 
         var response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-        int index = response.body().indexOf("c");
+        int index = response.body().indexOf("capital");
 
-        System.out.println(index);
+        int startingIndex = index + 10;
+
+        String capitalStart = response.body().substring(startingIndex);
+
+        int i = 0;
+        String capital = "";
+        char nextChar = capitalStart.charAt(0);
+
+        while (nextChar != '\"') {
+            capital = capital + nextChar;
+            i += 1;
+            nextChar = capitalStart.charAt(i);
+        }
+
+        System.out.println(capital);
+        this.capital = capital;
         System.out.println(response.body());
 
         return null;

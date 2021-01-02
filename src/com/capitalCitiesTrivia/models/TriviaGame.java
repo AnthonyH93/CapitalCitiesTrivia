@@ -49,7 +49,7 @@ public class TriviaGame {
             TriviaQuestion triviaQuestion = new TriviaQuestion(randomCountry, true);
             //System.out.println(triviaQuestion.getCountry());
             try {
-                triviaQuestion.getCapitalWithCountry2();
+                triviaQuestion.getCapitalWithCountry();
             }
             catch (Exception ex) {
                 ex.printStackTrace();
