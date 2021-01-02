@@ -6,8 +6,6 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-import static java.util.stream.Collectors.toList;
-
 public class TriviaQuestion {
     /* Member variables */
     private String country;
@@ -49,17 +47,17 @@ public class TriviaQuestion {
     }
 
     /* Use the REST Countries API to get the capital of a given country */
-    public String getCapitalWithCountry() throws IOException, InterruptedException {
+    public void getAndSetCapitalWithCountry() throws IOException, InterruptedException {
         String countryRequest = this.getCountry();
         if (countryRequest.equals("")) {
-            return null;
+            return;
         }
 
         /* Create the HTTP request */
         String urlString = "https://restcountries.eu/rest/v2/name/" + countryRequest;
-        System.out.println(urlString);
+        //System.out.println(urlString);
         String newUrlString = urlString.replaceAll(" ", "%20");
-        System.out.println(newUrlString);
+        //System.out.println(newUrlString);
 
         var client = HttpClient.newHttpClient();
 
@@ -84,10 +82,8 @@ public class TriviaQuestion {
         }
 
         System.out.println(capital);
-        this.capital = capital;
-        System.out.println(response.body());
-
-        return null;
+        this.setCapital(capital);
+        //System.out.println(response.body());
     }
 
 }

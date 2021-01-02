@@ -2,7 +2,6 @@ package com.capitalCitiesTrivia.models;
 
 import com.capitalCitiesTrivia.resources.Constants;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -47,9 +46,8 @@ public class TriviaGame {
             System.out.println(randomCountry);
 
             TriviaQuestion triviaQuestion = new TriviaQuestion(randomCountry, true);
-            //System.out.println(triviaQuestion.getCountry());
             try {
-                triviaQuestion.getCapitalWithCountry();
+                triviaQuestion.getAndSetCapitalWithCountry();
             }
             catch (Exception ex) {
                 ex.printStackTrace();

@@ -1,5 +1,8 @@
 package com.capitalCitiesTrivia.resources;
 
+import com.capitalCitiesTrivia.models.TriviaGame;
+import com.capitalCitiesTrivia.models.TriviaQuestion;
+
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -32,5 +35,29 @@ public class Constants {
             ex.printStackTrace();
         }
         return countries;
+    }
+
+    /* Common print messages */
+    public void printIntro(String modeSelected, Boolean guessingCountry) {
+        System.out.println("Welcome to Capital Cities Trivia!");
+        System.out.println();
+        System.out.println("You selected " + modeSelected +" mode!");
+        if (guessingCountry) {
+            System.out.println("You will be shown a capital city and will have to type the country.");
+        }
+        else {
+            System.out.println("You will be shown a country and will have to type the capital city.");
+        }
+
+        System.out.println();
+        System.out.println("Good luck! The game will begin now ...");
+    }
+
+    public void printSingleQuestion(TriviaQuestion triviaQuestion) {
+
+    }
+
+    public void printSingleAnswer(TriviaQuestion triviaQuestion, String answerGiven) {
+
     }
 }

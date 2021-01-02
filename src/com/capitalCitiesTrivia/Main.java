@@ -8,8 +8,6 @@ import java.util.ArrayList;
 public class Main {
 
     public static void main(String[] args) {
-	    System.out.println("Welcome to Capital Cities Trivia!");
-
 	    /* Parse the input parameters to decide which mode to launch and the mode settings */
         /* Format for input is: mode maxQuestions */
 
@@ -34,8 +32,9 @@ public class Main {
                 System.out.println("Selected max questions: " + maxQuestions);
             }
 
-            TriviaGame game = new TriviaGame(maxQuestions);
-            game.getQuestion(false);
+            /* Run the trivia game with the trivia game runner instance */
+            TriviaGameRunner game = new TriviaGameRunner(mode, maxQuestions);
+            game.runTriviaGame();
 
         }
 
