@@ -3,8 +3,6 @@ package com.capitalCitiesTrivia;
 import com.capitalCitiesTrivia.models.*;
 import com.capitalCitiesTrivia.resources.*;
 
-import java.util.ArrayList;
-
 public class Main {
 
     public static void main(String[] args) {
@@ -15,15 +13,15 @@ public class Main {
         int maxQuestions = Integer.MAX_VALUE;
 
         if (args.length < 1) {
-            System.out.println("Error! Build format: mode (1,2 or 3) maxQuestions (optional)");
+            System.out.println("Error! Build format: mode (1-6) maxQuestions (optional)");
             System.exit(1);
         }
         else {
             mode = Integer.parseInt(args[0]);
             System.out.println("Selected mode: " + mode);
 
-            if (mode < 1 || mode > 3) {
-                System.out.println("Error! Mode must be 1, 2 or 3.");
+            if (mode < 1 || mode > 6) {
+                System.out.println("Error! Mode must be between 1 and 6.");
                 System.exit(2);
             }
 
@@ -32,12 +30,11 @@ public class Main {
                 System.out.println("Selected max questions: " + maxQuestions);
             }
 
-            Boolean guessingCountry = true;
+            Boolean guessingCountry = !(mode%2 == 0);
 
             /* Run the trivia game with the trivia game runner instance */
             TriviaGameRunner game = new TriviaGameRunner(mode, maxQuestions, guessingCountry);
             game.runTriviaGame();
-
         }
 
         System.exit(0);

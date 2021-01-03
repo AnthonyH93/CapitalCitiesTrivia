@@ -27,13 +27,13 @@ public class TriviaGameRunner {
     public void runTriviaGame() {
         int modeSelected = this.getMode();
 
-        if (modeSelected == 1) {
+        if (modeSelected == 1 || modeSelected == 2) {
             this.runInfiniteTriviaGame();
         }
-        else if (modeSelected == 2) {
+        else if (modeSelected == 3 || modeSelected == 4) {
 
         }
-        else if (modeSelected == 3) {
+        else if (modeSelected == 5 || modeSelected == 6) {
 
         }
         /* Error case: should not occur */
@@ -43,7 +43,7 @@ public class TriviaGameRunner {
         }
     }
 
-    /* Infinite trivia game is mode 1 */
+    /* Infinite trivia game is mode 1 or 2 */
     public void runInfiniteTriviaGame() {
         Constants c = new Constants();
         c.printIntro("infinite", this.guessingCountry);
@@ -65,14 +65,26 @@ public class TriviaGameRunner {
             Boolean correctAnswer = false;
 
             if (this.guessingCountry) {
-                correctAnswer = nextQuestion.getCountry().equals(answer);
+                correctAnswer = nextQuestion.getCountry().toLowerCase().equals(answer.toLowerCase());
             }
             else {
-                correctAnswer = nextQuestion.getCapital().equals(answer);
+                correctAnswer = nextQuestion.getCapital().toLowerCase().equals(answer.toLowerCase());
+            }
+
+            if (correctAnswer) {
+                triviaGame.addCorrectAnswer();
+            }
+            else {
+                triviaGame.addIncorrectAnswer();
             }
 
             c.printSingleAnswer(nextQuestion, this.guessingCountry, answer, correctAnswer);
+            c.printCurrentRecord(this.triviaGame);
         }
     }
+
+    /* Challenge is mode 3 or 4 */
+
+    /* Multiple choice is mode 5 or 6 */
 
 }

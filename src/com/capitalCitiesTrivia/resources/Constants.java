@@ -83,4 +83,17 @@ public class Constants {
             }
         }
     }
+
+    public void printCurrentRecord(TriviaGame triviaGame) {
+        double correctAnswers = triviaGame.getCorrectAnswers();
+        double incorrectAnswers = triviaGame.getIncorrectAnswers();
+        double totalQuestions = correctAnswers + incorrectAnswers;
+
+        System.out.println();
+        System.out.println("Current record: " + triviaGame.getCorrectAnswers() + " correct and " + triviaGame.getIncorrectAnswers() + " incorrect.");
+
+        double percentage = (correctAnswers/totalQuestions) * 100.0;
+        int percent = (int) Math.round(percentage);
+        System.out.println("Percentage: " + percent + "%");
+    }
 }

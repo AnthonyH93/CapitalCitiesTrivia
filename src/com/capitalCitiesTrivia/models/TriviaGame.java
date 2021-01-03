@@ -33,6 +33,14 @@ public class TriviaGame {
         this.incorrectAnswers += 1;
     }
 
+    public int getCorrectAnswers() {
+        return this.correctAnswers;
+    }
+
+    public int getIncorrectAnswers() {
+        return this.incorrectAnswers;
+    }
+
     public void createQuestion(Boolean isMC) {
         /* Multiple choice */
         if (isMC) {
