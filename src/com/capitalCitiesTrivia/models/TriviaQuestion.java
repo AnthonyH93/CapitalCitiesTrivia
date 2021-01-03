@@ -81,7 +81,7 @@ public class TriviaQuestion {
             nextChar = capitalStart.charAt(i);
         }
 
-        System.out.println(capital);
+        //System.out.println(capital);
         this.setCapital(capital);
         //System.out.println(response.body());
     }

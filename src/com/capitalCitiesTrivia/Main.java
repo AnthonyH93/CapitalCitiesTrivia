@@ -32,8 +32,10 @@ public class Main {
                 System.out.println("Selected max questions: " + maxQuestions);
             }
 
+            Boolean guessingCountry = true;
+
             /* Run the trivia game with the trivia game runner instance */
-            TriviaGameRunner game = new TriviaGameRunner(mode, maxQuestions);
+            TriviaGameRunner game = new TriviaGameRunner(mode, maxQuestions, guessingCountry);
             game.runTriviaGame();
 
         }

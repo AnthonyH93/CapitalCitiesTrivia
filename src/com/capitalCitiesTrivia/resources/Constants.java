@@ -53,11 +53,34 @@ public class Constants {
         System.out.println("Good luck! The game will begin now ...");
     }
 
-    public void printSingleQuestion(TriviaQuestion triviaQuestion) {
-
+    public void printSingleQuestion(TriviaQuestion triviaQuestion, Boolean guessingCountry) {
+        System.out.println();
+        if (guessingCountry) {
+            System.out.println("Which country has " + triviaQuestion.getCapital() + " as its capital city?");
+        }
+        else {
+            System.out.println("What is the capital city of " + triviaQuestion.getCountry() + "?");
+        }
     }
 
-    public void printSingleAnswer(TriviaQuestion triviaQuestion, String answerGiven) {
-
+    public void printSingleAnswer(TriviaQuestion triviaQuestion, Boolean guessingCountry, String answerGiven, Boolean correct) {
+        System.out.println();
+        System.out.println("You answered: " + answerGiven);
+        if (guessingCountry) {
+            if (correct) {
+                System.out.println("Great job! You are correct!");
+            }
+            else {
+                System.out.println("Incorrect! The correct answer is: " + triviaQuestion.getCountry());
+            }
+        }
+        else {
+            if (correct) {
+                System.out.println("Great job! You are correct!");
+            }
+            else {
+                System.out.println("Incorrect! The correct answer is: " + triviaQuestion.getCapital());
+            }
+        }
     }
 }

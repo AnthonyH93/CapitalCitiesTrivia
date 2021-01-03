@@ -33,7 +33,7 @@ public class TriviaGame {
         this.incorrectAnswers += 1;
     }
 
-    public void getQuestion(Boolean isMC) {
+    public void createQuestion(Boolean isMC) {
         /* Multiple choice */
         if (isMC) {
 
@@ -43,7 +43,7 @@ public class TriviaGame {
             /* Need to get 1 random country from the list */
             int randomNumber = ThreadLocalRandom.current().nextInt(0,196);
             String randomCountry = this.countries.get(randomNumber);
-            System.out.println(randomCountry);
+            //System.out.println(randomCountry);
 
             TriviaQuestion triviaQuestion = new TriviaQuestion(randomCountry, true);
             try {
@@ -55,6 +55,12 @@ public class TriviaGame {
 
             this.questions.add(triviaQuestion);
         }
+    }
+
+    public TriviaQuestion getQuestion() {
+        TriviaQuestion triviaQuestion = this.questions.get(0);
+        this.questions.remove(triviaQuestion);
+        return triviaQuestion;
     }
 
 }
