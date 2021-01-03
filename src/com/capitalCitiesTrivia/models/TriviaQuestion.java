@@ -1,7 +1,7 @@
 package com.capitalCitiesTrivia.models;
 
-import java.io.*;
-import java.net.*;
+import java.io.IOException;
+import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
@@ -55,9 +55,7 @@ public class TriviaQuestion {
 
         /* Create the HTTP request */
         String urlString = "https://restcountries.eu/rest/v2/name/" + countryRequest;
-        //System.out.println(urlString);
         String newUrlString = urlString.replaceAll(" ", "%20");
-        //System.out.println(newUrlString);
 
         var client = HttpClient.newHttpClient();
 
@@ -81,9 +79,7 @@ public class TriviaQuestion {
             nextChar = capitalStart.charAt(i);
         }
 
-        //System.out.println(capital);
         this.setCapital(capital);
-        //System.out.println(response.body());
     }
 
 }

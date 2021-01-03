@@ -38,15 +38,23 @@ public class Constants {
     }
 
     /* Common print messages */
-    public void printIntro(String modeSelected, Boolean guessingCountry) {
+    public void printIntro(String modeSelected, Boolean guessingCountry, Boolean isChallengeMode, int maxQuestions) {
+        int maxWrong = maxQuestions/3;
+        int correct = maxQuestions - maxWrong;
         System.out.println("Welcome to Capital Cities Trivia!");
         System.out.println();
         System.out.println("You selected " + modeSelected +" mode!");
         if (guessingCountry) {
             System.out.println("You will be shown a capital city and will have to type the country.");
+            if (isChallengeMode) {
+                System.out.println("You must answer " + correct + " correctly and answer less than " + maxWrong + " incorrectly to win.");
+            }
         }
         else {
             System.out.println("You will be shown a country and will have to type the capital city.");
+            if (isChallengeMode) {
+                System.out.println("You must answer " + correct + " correctly and less than " + maxWrong + " incorrectly to win.");
+            }
         }
 
         System.out.println();

@@ -41,6 +41,10 @@ public class TriviaGame {
         return this.incorrectAnswers;
     }
 
+    public int getMaxQuestions() {
+        return this.maxQuestions;
+    }
+
     public void createQuestion(Boolean isMC) {
         /* Multiple choice */
         if (isMC) {
@@ -51,7 +55,6 @@ public class TriviaGame {
             /* Need to get 1 random country from the list */
             int randomNumber = ThreadLocalRandom.current().nextInt(0,196);
             String randomCountry = this.countries.get(randomNumber);
-            //System.out.println(randomCountry);
 
             TriviaQuestion triviaQuestion = new TriviaQuestion(randomCountry, true);
             try {
