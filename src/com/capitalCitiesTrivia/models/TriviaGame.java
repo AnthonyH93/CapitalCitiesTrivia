@@ -45,10 +45,27 @@ public class TriviaGame {
         return this.maxQuestions;
     }
 
-    public void createQuestion(Boolean isMC) {
+    public void createQuestion(Boolean isMC, Boolean isMCGuessingCountry) {
         /* Multiple choice */
         if (isMC) {
+            /* Need to get 1 random country from the list */
+            int randomNumber = ThreadLocalRandom.current().nextInt(0,195);
+            String randomCountry = this.countries.get(randomNumber);
 
+            TriviaQuestion triviaQuestion = new TriviaQuestion(randomCountry, true);
+            try {
+                if (isMCGuessingCountry) {
+                    triviaQuestion.setupMultipleChoiceGuessingCountry(randomNumber, this.countries);
+                }
+                else {
+
+                }
+            }
+            catch (Exception ex) {
+                ex.printStackTrace();
+            }
+
+            this.questions.add(triviaQuestion);
         }
         /* Single question */
         else {
@@ -56,7 +73,7 @@ public class TriviaGame {
             int randomNumber = ThreadLocalRandom.current().nextInt(0,195);
             String randomCountry = this.countries.get(randomNumber);
 
-            TriviaQuestion triviaQuestion = new TriviaQuestion(randomCountry, true);
+            TriviaQuestion triviaQuestion = new TriviaQuestion(randomCountry, false);
             try {
                 triviaQuestion.getAndSetCapitalWithCountry();
             }

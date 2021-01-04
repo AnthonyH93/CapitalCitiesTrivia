@@ -42,8 +42,7 @@ public class Constants {
         int maxWrong = maxQuestions/3;
         int correct = maxQuestions - maxWrong;
         System.out.println("Welcome to Capital Cities Trivia!");
-        System.out.println();
-        System.out.println("You selected " + modeSelected +" mode!");
+        System.out.println("\nYou selected " + modeSelected +" mode!");
         if (guessingCountry) {
             System.out.println("You will be shown a capital city and will have to type the country.");
             if (isChallengeMode) {
@@ -57,23 +56,20 @@ public class Constants {
             }
         }
 
-        System.out.println();
-        System.out.println("Good luck! The game will begin now ...");
+        System.out.println("\nGood luck! The game will begin now ...");
     }
 
     public void printSingleQuestion(TriviaQuestion triviaQuestion, Boolean guessingCountry) {
-        System.out.println();
         if (guessingCountry) {
-            System.out.println("Which country has " + triviaQuestion.getCapital() + " as its capital city?");
+            System.out.println("\nWhich country has " + triviaQuestion.getCapital() + " as its capital city?");
         }
         else {
-            System.out.println("What is the capital city of " + triviaQuestion.getCountry() + "?");
+            System.out.println("\nWhat is the capital city of " + triviaQuestion.getCountry() + "?");
         }
     }
 
     public void printSingleAnswer(TriviaQuestion triviaQuestion, Boolean guessingCountry, String answerGiven, Boolean correct) {
-        System.out.println();
-        System.out.println("You answered: " + answerGiven);
+        System.out.println("\nYou answered: " + answerGiven);
         if (guessingCountry) {
             if (correct) {
                 System.out.println("Great job! You are correct!");
@@ -97,11 +93,32 @@ public class Constants {
         double incorrectAnswers = triviaGame.getIncorrectAnswers();
         double totalQuestions = correctAnswers + incorrectAnswers;
 
-        System.out.println();
-        System.out.println("Current record: " + triviaGame.getCorrectAnswers() + " correct and " + triviaGame.getIncorrectAnswers() + " incorrect.");
+        System.out.println("\nCurrent record: " + triviaGame.getCorrectAnswers() + " correct and " + triviaGame.getIncorrectAnswers() + " incorrect.");
 
         double percentage = (correctAnswers/totalQuestions) * 100.0;
         int percent = (int) Math.round(percentage);
         System.out.println("Percentage: " + percent + "%");
+    }
+
+    public void printExtraMCInstructions() {
+        System.out.println("\nEnter the letter (A, B, C or D) corresponding to your choice, case does not matter.");
+    }
+
+    public void printMCQuestion(TriviaQuestion triviaQuestion, Boolean guessingCountry) {
+        String[] MCOptions = triviaQuestion.getMultipleChoiceOptions();
+        if (guessingCountry) {
+            System.out.println("\nWhich country has " + triviaQuestion.getCapital() + " as its capital city?");
+            System.out.println("\nA. " + MCOptions[0]);
+            System.out.println("B. " + MCOptions[1]);
+            System.out.println("C. " + MCOptions[2]);
+            System.out.println("D. " + MCOptions[3]);
+        }
+        else {
+            System.out.println("\nWhat is the capital city of " + triviaQuestion.getCountry() + "?");
+            System.out.println("\nA. " + MCOptions[0]);
+            System.out.println("B. " + MCOptions[1]);
+            System.out.println("C. " + MCOptions[2]);
+            System.out.println("D. " + MCOptions[3]);
+        }
     }
 }

@@ -33,8 +33,11 @@ public class TriviaGameRunner {
         else if (modeSelected == 3 || modeSelected == 4) {
             this.runChallengeTriviaGame();
         }
-        else if (modeSelected == 5 || modeSelected == 6) {
-            this.runMultipleChoiceTriviaGame();
+        else if (modeSelected == 5) {
+            this.runMultipleChoiceTriviaGameGuessingCountry();
+        }
+        else if (modeSelected == 6) {
+            this.runMultipleChoiceTriviaGameGuessingCapital();
         }
         /* Error case: should not occur */
         else {
@@ -53,7 +56,7 @@ public class TriviaGameRunner {
         /* Infinite loop for asking trivia questions and accepting answers */
         while (true) {
             /* Get a new question */
-            triviaGame.createQuestion(false);
+            triviaGame.createQuestion(false, false);
             nextQuestion = triviaGame.getQuestion();
 
             c.printSingleQuestion(nextQuestion, this.guessingCountry);
@@ -101,7 +104,7 @@ public class TriviaGameRunner {
         /* Loop which will ask upto the max number of questions */
         while (this.triviaGame.getIncorrectAnswers() < maxWrong && this.triviaGame.getCorrectAnswers() < correctToWin) {
             /* Get a new question */
-            triviaGame.createQuestion(false);
+            triviaGame.createQuestion(false, false);
             nextQuestion = triviaGame.getQuestion();
 
             c.printSingleQuestion(nextQuestion, this.guessingCountry);
@@ -140,13 +143,67 @@ public class TriviaGameRunner {
         else {
             System.out.println("\nUnfortunately, you lost the challenge.");
         }
+    }
 
+    /* Multiple choice guessing country is mode 5 */
+    public void runMultipleChoiceTriviaGameGuessingCountry() {
+        Constants c = new Constants();
+
+        c.printIntro("multiple choice", this.guessingCountry, false, 0);
+        c.printExtraMCInstructions();
+
+        TriviaQuestion nextQuestion = null;
+
+        /* Infinite loop for asking MC trivia questions and accepting answers */
+        while (true) {
+            /* Get a new question */
+            triviaGame.createQuestion(true, true);
+            nextQuestion = triviaGame.getQuestion();
+
+            c.printMCQuestion(nextQuestion, this.guessingCountry);
+
+            Scanner scanner = new Scanner(System.in);
+            String answer = scanner.nextLine();
+
+            Boolean correctAnswer = false;
+
+            /* Check the valid cases */
+            int indexAnswered = 0;
+
+            switch (answer.toLowerCase()) {
+                case "a":
+                    indexAnswered = 0;
+                    break;
+                case "b":
+                    indexAnswered = 1;
+                    break;
+                case "c":
+                    indexAnswered = 2;
+                    break;
+                case "d":
+                    indexAnswered = 3;
+                    break;
+                default :
+                    indexAnswered = -1;
+            }
+
+            correctAnswer = (indexAnswered == nextQuestion.getMultipleChoiceCorrectIndex());
+
+            if (correctAnswer) {
+                triviaGame.addCorrectAnswer();
+            }
+            else {
+                triviaGame.addIncorrectAnswer();
+            }
+
+            c.printSingleAnswer(nextQuestion, this.guessingCountry, answer, correctAnswer);
+            c.printCurrentRecord(this.triviaGame);
+        }
 
     }
 
-    /* Multiple choice is mode 5 or 6 */
-    public void runMultipleChoiceTriviaGame() {
+    /* Multiple choice guessing capital is mode 6 */
+    public void runMultipleChoiceTriviaGameGuessingCapital() {
         Constants c = new Constants();
-
     }
 }
