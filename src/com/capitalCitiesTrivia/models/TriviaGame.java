@@ -53,7 +53,7 @@ public class TriviaGame {
         /* Single question */
         else {
             /* Need to get 1 random country from the list */
-            int randomNumber = ThreadLocalRandom.current().nextInt(0,196);
+            int randomNumber = ThreadLocalRandom.current().nextInt(0,195);
             String randomCountry = this.countries.get(randomNumber);
 
             TriviaQuestion triviaQuestion = new TriviaQuestion(randomCountry, true);
