@@ -27,3 +27,6 @@ Replace [parameters] with up to two numbers:
   * number1 = 3: Challenge mode guessing the country from it's capital
   * number1 = 4: Challenge mode guessing the capital of a given country
   * number1 = 5: Multiple choice mode guessing the correct country from it's capital with 4 options
+
+### Multiple Choice Mode Sample Game
+![alt text](CapitalCitiesTriviaMultipleChoice.png?raw=true)
